@@ -9,6 +9,9 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private float speed = 4f;
 
     private float horizontalMovement;
+   
+    [SerializeField] float jumpForce = 3f;
+    private float jumps;
     
     private void Start()
     {
@@ -24,5 +27,19 @@ public class PlayerInputHandler : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         horizontalMovement = context.ReadValue<Vector2>().x;
+
+        if (jumps > 0)
+        {
+            body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            jumps--;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            jumps = 1;
+        }
     }
 }
