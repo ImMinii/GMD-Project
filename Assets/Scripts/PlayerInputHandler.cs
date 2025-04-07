@@ -7,6 +7,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     [SerializeField] private Rigidbody2D body;
     [SerializeField] private float speed = 4f;
+    
 
     private float horizontalMovement;
    
@@ -18,8 +19,9 @@ public class PlayerInputHandler : MonoBehaviour
         //body = GetComponent<Rigidbody2D>();
     }
 
+    
 
-    void Update()
+    void FixedUpdate()
     {
         body.linearVelocity = new Vector2(horizontalMovement * speed, body.linearVelocity.y);
     }

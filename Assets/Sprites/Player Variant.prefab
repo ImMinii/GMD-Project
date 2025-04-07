@@ -100,7 +100,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &4508249145188926468
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -236,8 +236,12 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: e9011a1e-53db-40ff-818f-339c47099ac3
     m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 60306f6d-fb54-4e8c-82d8-02c0bdb94c89
+    m_ActionName: 'Player/Jump[/Keyboard/space]'
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Joystick
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -255,3 +259,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 1926142998551312529}
   speed: 10
+  jumpForce: 3

@@ -27,7 +27,7 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "31b79e73-7254-4ca1-99e3-014cc27dec21",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -269,7 +269,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";FirstPlayerKeyboard;SecondPlayerKeyboard",
+                    "groups": ";FirstPlayerKeyboard",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
