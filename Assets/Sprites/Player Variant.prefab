@@ -68,6 +68,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8896104525716621867, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6041244963804610515}
+    - targetCorrespondingSourceObject: {fileID: 8896104525716621867, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2961732621282233816}
   m_SourcePrefab: {fileID: 100100000, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
 --- !u!1 &1420575300035268420 stripped
 GameObject:
@@ -97,9 +100,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &4508249145188926468
 BoxCollider2D:
@@ -260,3 +263,23 @@ MonoBehaviour:
   body: {fileID: 1926142998551312529}
   speed: 10
   jumpForce: 3
+--- !u!232 &-2961732621282233816
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420575300035268420}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 1
+  m_Distance: 4
+  m_MaxDistanceOnly: 0
