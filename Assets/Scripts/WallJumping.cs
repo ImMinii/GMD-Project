@@ -28,59 +28,46 @@ public class WallJumping : MonoBehaviour
         bool onWall = IsOnWall();
         bool grounded = groundCheck.IsGrounded();
 
+        // Wall sticking logic
         if (onWall && !grounded)
         {
             isWallSticking = true;
+            
             if (body.linearVelocity.y < 0)
             {
-                body.linearVelocity = new Vector2(0f, 0f);
+                body.linearVelocity = new Vector2(body.linearVelocity.x, -1f);
             }
             wallJumpCount = maxWallJumps;
-                         
         }
         else
         {
             isWallSticking = false;
-            
-            if (grounded)
-                wallJumpCount = maxWallJumps;
+            if (grounded) wallJumpCount = maxWallJumps;  // Reset jump count when grounded
         }
     }
 
-    public void TryWallJump(float verticalInput, bool jumpPressed)
+    public void TryWallJump(bool jumpPressed)
     {
-        if (isWallSticking && jumpPressed && verticalInput > 0 && wallJumpCount > 0)
-        {
-            wallJumpCount--;
+        if (!isWallSticking || !jumpPressed || wallJumpCount <= 0)
+            return;
 
-            int direction = playerMovement.IsFacingRight() ? -1 : 1;
-            
-            Vector2 jumpForce = new Vector2(direction * wallJumpPower.x, wallJumpPower.y);
-            body.linearVelocity = jumpForce;
-            body.AddForce(new Vector2(direction * pushAwayForce, 0f), ForceMode2D.Impulse);
-            
-            FlipIfNeeded(direction);
-            isWallSticking = false;
-            
-        }
+        wallJumpCount--;
+
+        int direction = playerMovement.IsFacingRight() ? -1 : 1;
+
+        // Apply the wall jump force
+        Vector2 jumpForce = new Vector2(-(direction * (wallJumpPower.x + pushAwayForce)), wallJumpPower.y);
+        body.linearVelocity = jumpForce;
+        Debug.Log("Wall jump direction: " + direction);
+        // Flip the character
+        playerMovement.ForceFlip(direction);
+
+        isWallSticking = false;
     }
 
     public bool IsOnWall()
     {
         return Physics2D.OverlapBox(wallCheck.position, wallCheckSize, 0, wallLayer);
-    }
-
-    private void FlipIfNeeded(int jumpDirection)
-    {
-        bool shouldFlip = (playerMovement.IsFacingRight() && jumpDirection > 0) ||
-                          (!playerMovement.IsFacingRight() && jumpDirection < 0);
-
-        if (shouldFlip)
-        {
-            Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
-        }
     }
 
     private void OnDrawGizmosSelected()

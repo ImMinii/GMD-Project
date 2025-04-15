@@ -28,17 +28,23 @@ public class PlayerMovement : MonoBehaviour
         {
             body.linearVelocity = new Vector2(horizontal * speed, body.linearVelocity.y);
         }
-        else
-        {
-            // Stop horizontal movement when sticking to the wall
-            body.linearVelocity = new Vector2(0f, body.linearVelocity.y);
-        }
         Flip();
     }
 
     private void Flip()
     {
         if (isFacingRight && horizontal < 0 || !isFacingRight && horizontal > 0)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
+    }
+    public void ForceFlip(int direction)
+    {
+        // Flip only if facing the opposite way
+        if ((direction > 0 && !isFacingRight) || (direction < 0 && isFacingRight))
         {
             isFacingRight = !isFacingRight;
             Vector3 scale = transform.localScale;

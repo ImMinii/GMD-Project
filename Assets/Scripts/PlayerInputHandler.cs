@@ -22,15 +22,14 @@ public class PlayerInputHandler : MonoBehaviour
         Vector2 input = context.ReadValue<Vector2>();
         playerMovement.SetHorizontal(input.x);
         
-        previousVerticalInput = verticalInput;
-        verticalInput = input.y;
-
-        bool upJustPressed = previousVerticalInput <= 0 && verticalInput > 0;
-
-        if (upJustPressed)
+    }
+    
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (context.started)
         {
-            jump.TryJump(true); // Regular jump
-            wallJump.TryWallJump(verticalInput, true); // Wall jump
+            jump.TryJump(true); // Normal jump
+            wallJump.TryWallJump(true); // Wall jump attempt
         }
         else
         {

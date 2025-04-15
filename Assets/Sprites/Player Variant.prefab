@@ -372,7 +372,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  groundCheckSize: {x: 1, y: 0.05}
+  groundCheckSize: {x: 0.5, y: 0.05}
 --- !u!114 &4381789249147995664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,10 +419,11 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
-  wallCheckSize: {x: 0.05, y: 1}
+  wallCheckSize: {x: 0.05, y: 0.5}
   wallJumpPower: {x: 4, y: 6}
   maxWallJumps: 2
   pushAwayForce: 4
+  timerWallJump: 0.5
 --- !u!233 &-9178726115896476102
 HingeJoint2D:
   m_ObjectHideFlags: 0
