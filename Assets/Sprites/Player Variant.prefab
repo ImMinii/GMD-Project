@@ -138,9 +138,6 @@ PrefabInstance:
       addedObject: {fileID: 6041244963804610515}
     - targetCorrespondingSourceObject: {fileID: 8896104525716621867, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -2961732621282233816}
-    - targetCorrespondingSourceObject: {fileID: 8896104525716621867, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 5716946070994909066}
     - targetCorrespondingSourceObject: {fileID: 8896104525716621867, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
       insertIndex: -1
@@ -151,6 +148,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8896104525716621867, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 602006038745824641}
+    - targetCorrespondingSourceObject: {fileID: 8896104525716621867, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -9178726115896476102}
   m_SourcePrefab: {fileID: 100100000, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
 --- !u!1 &1420575300035268420 stripped
 GameObject:
@@ -323,6 +323,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 60306f6d-fb54-4e8c-82d8-02c0bdb94c89
     m_ActionName: 'Player/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 09c011a0-7737-4742-818b-9feca007ab65
+    m_ActionName: 'Player1/Move[/DualShock4GamepadHID/leftStick,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ecec060a-bd1b-4087-bc92-a7744a2b665a
+    m_ActionName: 'Player1/Look[/DualShock4GamepadHID/rightStick,/Mouse/delta]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c9c92380-4c7d-4a26-bd92-44a3071b8f7f
+    m_ActionName: 'Player1/Fire[/DualShock4GamepadHID/rightTrigger,/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed79727e-e501-4572-8aea-703a801b53a0
+    m_ActionName: 'Player1/Jump[/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Joystick
   m_DefaultActionMap: Player
@@ -340,26 +356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e62ff53a3d5b54f80ac5564799ac29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!232 &-2961732621282233816
-DistanceJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420575300035268420}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
-  m_Distance: 4
-  m_MaxDistanceOnly: 0
 --- !u!114 &5716946070994909066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +423,32 @@ MonoBehaviour:
   wallJumpPower: {x: 4, y: 6}
   maxWallJumps: 2
   pushAwayForce: 4
+--- !u!233 &-9178726115896476102
+HingeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420575300035268420}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_UseConnectedAnchor: 1
+  m_UseMotor: 0
+  m_Motor:
+    m_MotorSpeed: 0
+    m_MaximumMotorForce: 10000
+  m_UseLimits: 0
+  m_AngleLimits:
+    m_LowerAngle: 0
+    m_UpperAngle: 359
 --- !u!4 &6830486132827474964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3893758428119009659, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
