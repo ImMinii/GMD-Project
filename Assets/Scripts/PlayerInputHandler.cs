@@ -28,8 +28,8 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (context.started)
         {
-            jump.TryJump(true); // Normal jump
-            wallJump.TryWallJump(true); // Wall jump attempt
+            jump.TryJump(true); 
+            wallJump.TryWallJump(true); 
         }
         else
         {

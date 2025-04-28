@@ -9,7 +9,6 @@ public class WallJumping : MonoBehaviour
 
     [SerializeField] private Vector2 wallJumpPower = new Vector2(4f, 6f);
     [SerializeField] private int maxWallJumps = 2;
-    [SerializeField] private float pushAwayForce = 2f;
 
     private bool isWallSticking;
     private int wallJumpCount;
@@ -56,11 +55,12 @@ public class WallJumping : MonoBehaviour
         int direction = playerMovement.IsFacingRight() ? -1 : 1;
 
         // Apply the wall jump force
-        Vector2 jumpForce = new Vector2(-(direction * (wallJumpPower.x + pushAwayForce)), wallJumpPower.y);
+        Vector2 jumpForce = new Vector2(direction * wallJumpPower.x, wallJumpPower.y);
         body.linearVelocity = jumpForce;
         Debug.Log("Wall jump direction: " + direction);
-        // Flip the character
+        
         playerMovement.ForceFlip(direction);
+        playerMovement.TriggerWallJumpLock();
 
         isWallSticking = false;
     }

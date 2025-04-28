@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight = true;
 
     private WallJumping wallJumping;
+    [SerializeField] private float wallJumpLockTime = 0.2f; // time after wall jump where movement is locked
+    private float wallJumpLockCounter;
 
     private void Awake()
     {
@@ -20,11 +22,16 @@ public class PlayerMovement : MonoBehaviour
         horizontal = value;
     }
 
-    private void FixedUpdate()
+    private void Update()
     { 
-        bool onWall = wallJumping.IsOnWall(); // Check if player is on a wall
+        bool onWall = wallJumping.IsOnWall();
 
-        if (!onWall)  // If not on a wall, move horizontally as usual
+        if (wallJumpLockCounter > 0)
+        {
+            wallJumpLockCounter -= Time.deltaTime;
+        }
+        
+        if (!onWall && wallJumpLockCounter <= 0)  
         {
             body.linearVelocity = new Vector2(horizontal * speed, body.linearVelocity.y);
         }
@@ -54,4 +61,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool IsFacingRight() => isFacingRight;
+    
+    public void TriggerWallJumpLock()
+    {
+        wallJumpLockCounter = wallJumpLockTime;
+    }
 }
