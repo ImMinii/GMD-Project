@@ -183,7 +183,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &4508249145188926468
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -402,6 +402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 1926142998551312529}
   speed: 8
+  wallJumpLockTime: 0.2
 --- !u!114 &602006038745824641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,7 +423,6 @@ MonoBehaviour:
   wallCheckSize: {x: 0.05, y: 0.99}
   wallJumpPower: {x: 4, y: 6}
   maxWallJumps: 2
-  pushAwayForce: 4
 --- !u!233 &-9178726115896476102
 HingeJoint2D:
   m_ObjectHideFlags: 0
