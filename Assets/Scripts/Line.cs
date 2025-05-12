@@ -12,7 +12,7 @@ public class Line : MonoBehaviour
         lineRenderer.positionCount = 2; // Line needs two points
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (objectA != null && objectB != null)
         {
