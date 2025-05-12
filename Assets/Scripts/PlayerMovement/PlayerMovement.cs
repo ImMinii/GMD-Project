@@ -6,8 +6,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed = 4f;
     [SerializeField] private float acceleration = 50f;
     [SerializeField] private float maxSpeed = 10f;
-    public float moveSpeed = 5f;
-
 
     private float horizontal;
     private bool isFacingRight = true;
@@ -37,16 +35,12 @@ public class PlayerMovement : MonoBehaviour
         
         if (!onWall && wallJumpLockCounter <= 0)  
         {
-            float targetSpeed = horizontal * moveSpeed; // <- use moveSpeed, not maxSpeed
-            float speedDiff = targetSpeed - body.linearVelocity.x;
-            float movement = speedDiff * acceleration * Time.fixedDeltaTime;
-            body.AddForce(new Vector2(movement, 0), ForceMode2D.Force);
-
+            float targetSpeed = horizontal * maxSpeed;
+        float speedDiff = targetSpeed - body.linearVelocity.x;
+        float movement = speedDiff * acceleration * Time.fixedDeltaTime;
+        body.AddForce(new Vector2(movement, 0), ForceMode2D.Force);
         }
         Flip();
-
-
-        
     }
 
     private void Flip()
