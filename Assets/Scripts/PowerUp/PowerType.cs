@@ -1,6 +1,10 @@
 public enum PowerupType
 {
-    SpeedBoost,
+    Size,
+    Dash,
     DoubleJump,
-    // Add more types easily here
+    Featherfall,
+    Throwing,
+    TimeControl,
+    FastForward
 }
