@@ -8,12 +8,16 @@ public class PlayerInputHandler : MonoBehaviour
     private WallJumping wallJump;
     private float verticalInput;
     private float previousVerticalInput;
+    private PlayerPowerupHandler powerHandler;
+
     
     private void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         jump = GetComponent<Jumping>();
         wallJump = GetComponent<WallJumping>();
+        powerHandler = GetComponent<PlayerPowerupHandler>();
+
     }
     
 
@@ -34,6 +38,14 @@ public class PlayerInputHandler : MonoBehaviour
         else
         {
             jump.TryJump(false);
+        }
+    }
+    
+    public void UsePowerup(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            powerHandler.UsePowerup();
         }
     }
     

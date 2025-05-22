@@ -1,76 +1,88 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPowerupHandler : MonoBehaviour
 {
-    public List<Powerup> collectedPowerups = new List<Powerup>();
+    private Powerup activePowerup;
+    
+    //-------------------------------------------------Sizing---------------------------------------------------------//
+    [SerializeField] private Vector3 sizePowerupScale = new Vector3(1.5f, 1.5f, 1f);
+    private Vector3 originalScale;
+    private bool isSizeActive = false;
 
-    // Player state variables
-    private float normalSpeed = 5f;
-    private float boostedSpeed = 10f;
-    private bool canDoubleJump = false;
-
-    private PlayerMovement playerMovement;
+    //----------------------------------------------------------------------------------------------------------------// 
+    
+    // TESTING POWERUPS //
+    [SerializeField] private PowerupType debugPowerupType;
+    [SerializeField] private string debugDisplayName = "Test Powerup";
 
     private void Start()
     {
-        playerMovement = GetComponent<PlayerMovement>();
-    }
+        //Sizing
+        originalScale = transform.localScale;
+        
+        //Debug code start 
+        activePowerup = new Powerup
+        {
+            type = debugPowerupType,
+            displayName = debugDisplayName
+        };
 
-    private void Update()
-    {
-        // Only activate one powerup at a time based on priority (1, 2, then 3)
-        if (collectedPowerups.Count > 0 && Input.GetKey(KeyCode.Alpha1))
-        {
-            ApplyPowerup(collectedPowerups[0]);
-        }
-        else if (collectedPowerups.Count > 1 && Input.GetKey(KeyCode.Alpha2))
-        {
-            ApplyPowerup(collectedPowerups[1]);
-        }
-        else if (collectedPowerups.Count > 2 && Input.GetKey(KeyCode.Alpha3))
-        {
-            ApplyPowerup(collectedPowerups[2]);
-        }
-        else
-        {
-            // If no key is held, reset effects
-            ResetAllEffects();
-        }
+        Debug.Log("DEBUG: Assigned test powerup: " + debugPowerupType);
+        //Debug code end
     }
     
-    private void ResetAllEffects()
+
+    // Powerup state variables
+    private bool canDoubleJump = false;
+
+    public void UsePowerup()
     {
-        playerMovement.moveSpeed = normalSpeed;
-        canDoubleJump = false;
-    }
-
-
-
-    private void HandlePowerupInput(int index, KeyCode key)
-    {
-        if (index >= 0 && index < collectedPowerups.Count)
+        if (activePowerup != null)
         {
-            if (Input.GetKey(key))
-            {
-                ApplyPowerup(collectedPowerups[index]);
-            }
-            else
-            {
-                RemovePowerupEffect(collectedPowerups[index]);
-            }
+            ApplyPowerup(activePowerup);
+            activePowerup = null;
         }
     }
+
+
+
+
 
     private void ApplyPowerup(Powerup powerup)
     {
+        // Reset all powerup-related states first
+        ResetPowerupStates();
+
         switch (powerup.type)
         {
-            case PowerupType.SpeedBoost:
-                playerMovement.moveSpeed = boostedSpeed;
-                break;
             case PowerupType.DoubleJump:
                 canDoubleJump = true;
+                Debug.Log("Double Jump Activated!");
+                break;
+            case PowerupType.Size:
+                isSizeActive = !isSizeActive;
+                if (isSizeActive)
+                {
+                    transform.localScale = sizePowerupScale;
+                    Debug.Log("Size Increased!");
+                }
+                else
+                {
+                    transform.localScale = originalScale;
+                    Debug.Log("Size Reverted!");
+                }
+                break;
+            case PowerupType.Dash:
+                Debug.Log("Dash activated – not yet implemented.");
+                break;
+            case PowerupType.Featherfall:
+                Debug.Log("Featherfall activated – not yet implemented.");
+                break;
+            case PowerupType.Push:
+                Debug.Log("Push activated – not yet implemented.");
+                break;
+            case PowerupType.TimeControl:
+                Debug.Log("Time Control activated – not yet implemented.");
                 break;
             default:
                 Debug.LogWarning("Unknown powerup type.");
@@ -78,19 +90,13 @@ public class PlayerPowerupHandler : MonoBehaviour
         }
     }
 
-    private void RemovePowerupEffect(Powerup powerup)
+    private void ResetPowerupStates()
     {
-        switch (powerup.type)
-        {
-            case PowerupType.SpeedBoost:
-                playerMovement.moveSpeed = normalSpeed;
-                break;
-            case PowerupType.DoubleJump:
-                canDoubleJump = false;
-                break;
-            default:
-                break;
-        }
+        canDoubleJump = false;
+        transform.localScale = originalScale;
+
+        // TODO: Reset other powerup effects when implemented
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -98,8 +104,12 @@ public class PlayerPowerupHandler : MonoBehaviour
         PowerupPickup pickup = other.GetComponent<PowerupPickup>();
         if (pickup != null)
         {
-            collectedPowerups.Add(pickup.powerup);
+            activePowerup = pickup.powerup;
+            Debug.Log("Picked up powerup: " + activePowerup.displayName);
             Destroy(other.gameObject);
         }
     }
+
+    // To be used by other scripts (like Jumping)
+    public bool CanDoubleJump() => canDoubleJump;
 }

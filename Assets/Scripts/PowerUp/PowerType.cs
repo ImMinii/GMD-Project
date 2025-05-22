@@ -4,7 +4,6 @@ public enum PowerupType
     Dash,
     DoubleJump,
     Featherfall,
-    Throwing,
-    TimeControl,
-    FastForward
+    Push,
+    TimeControl
 }

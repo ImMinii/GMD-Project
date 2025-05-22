@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D body;
-    [SerializeField] private float speed = 4f;
     [SerializeField] private float acceleration = 50f;
     [SerializeField] private float maxSpeed = 10f;
 
