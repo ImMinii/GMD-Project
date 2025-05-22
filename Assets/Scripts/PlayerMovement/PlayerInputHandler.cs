@@ -9,6 +9,7 @@ public class PlayerInputHandler : MonoBehaviour
     private float verticalInput;
     private float previousVerticalInput;
     private PlayerPowerupHandler powerHandler;
+    [SerializeField]private InventoryController inventory;
 
     
     private void Awake()
@@ -17,6 +18,7 @@ public class PlayerInputHandler : MonoBehaviour
         jump = GetComponent<Jumping>();
         wallJump = GetComponent<WallJumping>();
         powerHandler = GetComponent<PlayerPowerupHandler>();
+        inventory = FindFirstObjectByType<InventoryController>();
 
     }
     
@@ -39,6 +41,21 @@ public class PlayerInputHandler : MonoBehaviour
         {
             jump.TryJump(false);
         }
+    }
+
+    public void Inventory(InputAction.CallbackContext context)
+    {
+        // Only respond once when input is actually performed
+        if (!context.performed) return;
+
+        if (inventory == null)
+        {
+            Debug.LogError("InventoryController reference is null!");
+            return;
+        }
+
+        Debug.Log("Inventory input triggered");
+        inventory.ToggleInventory(context);
     }
     
     public void UsePowerup(InputAction.CallbackContext context)
