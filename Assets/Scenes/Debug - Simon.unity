@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 28084503}
   - component: {fileID: 28084506}
   - component: {fileID: 28084505}
-  m_Layer: 0
+  m_Layer: 19
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2236,6 +2236,14 @@ PrefabInstance:
       propertyPath: m_AutoConfigureConnectedAnchor
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 247657882430312363, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
+      propertyPath: maxSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 247657882430312363, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
+      propertyPath: acceleration
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 602006038745824641, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: wallLayer.m_Bits
       value: 131072
@@ -2262,11 +2270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6830486132827474964, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.56
+      value: 11.5
       objectReference: {fileID: 0}
     - target: {fileID: 6830486132827474964, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.03
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 6830486132827474964, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2743,8 +2751,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 247657882430312363, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
+      propertyPath: maxSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 247657882430312363, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: moveSpeed
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 247657882430312363, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
+      propertyPath: acceleration
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 602006038745824641, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: wallLayer.m_Bits
@@ -2764,11 +2780,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6830486132827474964, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.79
+      value: 7.69
       objectReference: {fileID: 0}
     - target: {fileID: 6830486132827474964, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.79
+      value: 0.84
       objectReference: {fileID: 0}
     - target: {fileID: 6830486132827474964, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5991,7 +6007,10 @@ MonoBehaviour:
   phaseableLayers:
     serializedVersion: 2
     m_Bits: 1048576
-  debugPowerupType: 3
+  pushableLayers:
+    serializedVersion: 2
+    m_Bits: 524288
+  debugPowerupType: 4
 --- !u!1 &1960756922
 GameObject:
   m_ObjectHideFlags: 0
@@ -6089,6 +6108,9 @@ MonoBehaviour:
   dashForce: 10
   dashCooldown: 1
   phaseableLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  pushableLayers:
     serializedVersion: 2
     m_Bits: 0
   debugPowerupType: 0
