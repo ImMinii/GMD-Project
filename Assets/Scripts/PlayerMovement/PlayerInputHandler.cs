@@ -9,7 +9,7 @@ public class PlayerInputHandler : MonoBehaviour
     private float verticalInput;
     private float previousVerticalInput;
     private PlayerPowerupHandler powerHandler;
-    [SerializeField]private InventoryController inventory;
+    private InventoryToggle inventory;
 
     
     private void Awake()
@@ -18,7 +18,7 @@ public class PlayerInputHandler : MonoBehaviour
         jump = GetComponent<Jumping>();
         wallJump = GetComponent<WallJumping>();
         powerHandler = GetComponent<PlayerPowerupHandler>();
-        inventory = FindFirstObjectByType<InventoryController>();
+        inventory = FindFirstObjectByType<InventoryToggle>();
 
     }
     
@@ -55,7 +55,7 @@ public class PlayerInputHandler : MonoBehaviour
         }
 
         Debug.Log("Inventory input triggered");
-        inventory.ToggleInventory(context);
+        inventory.OnToggleInventory(context);
     }
     
     public void UsePowerup(InputAction.CallbackContext context)
