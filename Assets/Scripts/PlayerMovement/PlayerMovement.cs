@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontal;
     private bool isFacingRight = true;
+    private Vector2 platformVelocity = Vector2.zero;
 
     private WallJumping wallJumping;
     [SerializeField] private float wallJumpLockTime = 0.2f; // time after wall jump where movement is locked
@@ -22,6 +23,12 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontal = value;
     }
+
+    public void SetPlatformVelocity(Vector2 velocity)
+    {
+        platformVelocity = velocity;
+    }
+
 
     private void FixedUpdate()
     { 
@@ -42,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         Flip();
     }
 
-    private void Flip()
+    private void Flip() 
     {
         if (isFacingRight && horizontal < 0 || !isFacingRight && horizontal > 0)
         {
