@@ -10,18 +10,22 @@ public class MovingPlatform : MonoBehaviour
 
     private Vector3 target;
     private Vector3 previousPosition;
-    private List<Rigidbody2D> playersOnPlatform = new List<Rigidbody2D>();
+    private Vector3 movementDelta;
 
-    void Start()
+    private void Start()
     {
         target = pointB.position;
         previousPosition = transform.position;
     }
 
-    void FixedUpdate()
+    public bool isStopped = false;
+
+    private void FixedUpdate()
     {
+        if (isStopped) return; // Stop movement if time is stopped
+
         Vector3 newPosition = Vector3.MoveTowards(transform.position, target, speed * Time.fixedDeltaTime);
-        Vector3 movementDelta = newPosition - transform.position;
+        movementDelta = newPosition - transform.position;
         transform.position = newPosition;
 
         if (Vector3.Distance(transform.position, target) < 0.01f)
@@ -29,35 +33,30 @@ public class MovingPlatform : MonoBehaviour
             target = (target == pointA.position) ? pointB.position : pointA.position;
         }
 
-        // Move all players on platform manually
-        foreach (var rb in playersOnPlatform)
-        {
-            if (rb != null)
-                rb.MovePosition(rb.position + (Vector2)movementDelta);
-        }
-
         previousPosition = transform.position;
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+private void OnCollisionEnter2D(Collision2D collision)
+{
+    // Check if the object colliding is the player
+    if (IsInLayerMask(collision.gameObject, stickableLayers))
     {
-        if (IsInLayerMask(collision.gameObject, stickableLayers))
+        // Only set parent if player's ground check confirms grounded on this platform
+        // (Or, for simple tests, just set parent when any collision with stickable layer)
+        collision.transform.SetParent(this.transform);
+    }
+}
+
+private void OnCollisionExit2D(Collision2D collision)
+{
+    if (IsInLayerMask(collision.gameObject, stickableLayers))
+    {
+        if (collision.transform.parent == this.transform)
         {
-            Rigidbody2D rb = collision.rigidbody;
-            if (rb != null && !playersOnPlatform.Contains(rb))
-                playersOnPlatform.Add(rb);
+            collision.transform.SetParent(null);
         }
     }
+}
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (IsInLayerMask(collision.gameObject, stickableLayers))
-        {
-            Rigidbody2D rb = collision.rigidbody;
-            if (rb != null)
-                playersOnPlatform.Remove(rb);
-        }
-    }
 
     private bool IsInLayerMask(GameObject obj, LayerMask mask)
     {

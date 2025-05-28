@@ -276,7 +276,7 @@
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";FirstPlayerKeyboard",
                     "action": "UsePowerup",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -306,6 +306,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "UsePowerup",
+                    "type": "Button",
+                    "id": "c8c33e09-8ce0-462b-bc56-b36ac4d0e7dc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Look",
@@ -421,6 +430,17 @@
                     "processors": "",
                     "groups": "Joystick",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09f66305-573b-42ab-a69a-97cb7be0fc39",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";SecondPlayerKeyboard",
+                    "action": "UsePowerup",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

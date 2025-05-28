@@ -34,6 +34,9 @@ public class PlayerPowerupHandler : MonoBehaviour
     private PushableBox lastTouchedBox;
     private bool canPush = false;
 
+    //---------------------------------------------TimeControl--------------------------------------------------------//
+    private bool isTimeStopped = false;
+
 
 
     // TESTING POWERUPS //
@@ -131,8 +134,8 @@ public class PlayerPowerupHandler : MonoBehaviour
                 break;
 
             case PowerupType.TimeControl:
-                Debug.Log("Time Control activated – not yet implemented.");
-                break;
+            ToggleTimeControl();
+            break;
 
             default:
                 Debug.LogWarning("Unknown powerup type.");
@@ -244,6 +247,16 @@ public class PlayerPowerupHandler : MonoBehaviour
             lastTouchedBox = null;
         }
     }
+
+    private void ToggleTimeControl()
+{
+    isTimeStopped = !isTimeStopped;
+    foreach (var platform in FindObjectsOfType<MovingPlatform>())
+    {
+        platform.isStopped = isTimeStopped;
+    }
+    Debug.Log("Time Control " + (isTimeStopped ? "activated (platforms stopped)" : "deactivated (platforms resumed)"));
+}
 
 
 
