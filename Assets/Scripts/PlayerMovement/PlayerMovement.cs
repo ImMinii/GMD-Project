@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
         horizontal = value;
     }
 
-    private void Update()
+    private void FixedUpdate()
     { 
         bool onWall = wallJumping.IsOnWall();
 

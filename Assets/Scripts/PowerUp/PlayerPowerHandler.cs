@@ -20,11 +20,21 @@ public class PlayerPowerupHandler : MonoBehaviour
     //----------------------------------------------DoubleJump--------------------------------------------------------//
     private bool canDoubleJump = false;
 
-    //--------------------------------------------------Phasing--------------------------------------------------------//
+    //-------------------------------------------------Phasing--------------------------------------------------------//
     [SerializeField] private LayerMask phaseableLayers;
     private bool isPhasing = false;
     private Collider2D[] playerColliders;
     private List<Collider2D> ignoredColliders = new List<Collider2D>();
+    
+    //-------------------------------------------------Pushing--------------------------------------------------------//
+    [SerializeField] private Transform wallCheck;              // Assign your wallCheck GameObject here
+    [SerializeField] private Vector2 wallCheckSize = new Vector2(0.5f, 0.05f);
+    [SerializeField] private LayerMask pushableLayer;          // Create a PushableBox layer or use existing
+    
+    private PushableBox lastTouchedBox;
+    private bool canPush = false;
+
+
 
     // TESTING POWERUPS //
     [SerializeField] private PowerupType debugPowerupType;
@@ -48,6 +58,22 @@ public class PlayerPowerupHandler : MonoBehaviour
         Debug.Log("DEBUG: Assigned test powerup: " + debugPowerupType);
         ApplyPassivePowerupEffects();  //Debug
     }
+    
+    private void FixedUpdate()
+    {
+        if (canPush)
+        {
+            HandlePushableBoxTouch();
+        }
+        else if (lastTouchedBox != null)
+        {
+            lastTouchedBox.FreezeXMovement();
+            lastTouchedBox = null;
+        }
+    }
+
+
+
 
     public void UsePowerup()
     {
@@ -102,7 +128,6 @@ public class PlayerPowerupHandler : MonoBehaviour
                 break;
 
             case PowerupType.Push:
-                Debug.Log("Push activated – not yet implemented.");
                 break;
 
             case PowerupType.TimeControl:
@@ -118,12 +143,14 @@ public class PlayerPowerupHandler : MonoBehaviour
     private void ResetPowerupStates()
     {
         canDoubleJump = false;
+        canPush = false;
 
         if (isPhasing)
         {
             EnablePhasing(false);
         }
     }
+
 
     private void EnablePhasing(bool enable)
     {
@@ -185,8 +212,40 @@ public class PlayerPowerupHandler : MonoBehaviour
                 EnablePhasing(true);
                 Debug.Log("Passive Phasing enabled.");
                 break;
+
+            case PowerupType.Push:
+                canPush = true;
+                Debug.Log("Passive Push enabled.");
+                break;
         }
     }
+
+    
+    private void HandlePushableBoxTouch()
+    {
+        Collider2D hit = Physics2D.OverlapBox(wallCheck.position, wallCheckSize, 0f, pushableLayer);
+
+        if (hit != null)
+        {
+            PushableBox box = hit.GetComponent<PushableBox>();
+            if (box != null)
+            {
+                if (box != lastTouchedBox)
+                {
+                    lastTouchedBox?.FreezeXMovement(); // Freeze previous box if different
+                    lastTouchedBox = box;
+                }
+                box.AllowXMovement();
+            }
+        }
+        else if (lastTouchedBox != null)
+        {
+            lastTouchedBox.FreezeXMovement();
+            lastTouchedBox = null;
+        }
+    }
+
+
 
     public bool CanDoubleJump() => canDoubleJump;
     public bool IsPhasing() => isPhasing;

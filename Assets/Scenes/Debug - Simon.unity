@@ -208,6 +208,7 @@ GameObject:
   - component: {fileID: 28084503}
   - component: {fileID: 28084506}
   - component: {fileID: 28084505}
+  - component: {fileID: 28084507}
   m_Layer: 19
   m_Name: Square
   m_TagString: Untagged
@@ -279,7 +280,7 @@ Transform:
   m_GameObject: {fileID: 28084502}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.6, y: -0.54, z: 0}
+  m_LocalPosition: {x: 9.6, y: -0.8, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -358,6 +359,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &28084507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28084502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0ff30dbebd84d343944abceb5238129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &36399336
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6007,10 +6020,17 @@ MonoBehaviour:
   phaseableLayers:
     serializedVersion: 2
     m_Bits: 1048576
-  pushableLayers:
+  wallCheck: {fileID: 1926304085}
+  wallCheckSize: {x: 0.5, y: 0.05}
+  pushableLayer:
     serializedVersion: 2
     m_Bits: 524288
   debugPowerupType: 4
+--- !u!4 &1926304085 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2563313336069555342, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
+  m_PrefabInstance: {fileID: 1392360971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1960756922
 GameObject:
   m_ObjectHideFlags: 0
@@ -6110,7 +6130,9 @@ MonoBehaviour:
   phaseableLayers:
     serializedVersion: 2
     m_Bits: 0
-  pushableLayers:
+  wallCheck: {fileID: 0}
+  wallCheckSize: {x: 0.5, y: 0.05}
+  pushableLayer:
     serializedVersion: 2
     m_Bits: 0
   debugPowerupType: 0
