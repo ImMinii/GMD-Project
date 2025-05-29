@@ -45,16 +45,6 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void Inventory(InputAction.CallbackContext context)
     {
-        // Only respond once when input is actually performed
-        if (!context.performed) return;
-
-        if (inventory == null)
-        {
-            Debug.LogError("InventoryController reference is null!");
-            return;
-        }
-
-        Debug.Log("Inventory input triggered");
         inventory.OnToggleInventory(context);
     }
     

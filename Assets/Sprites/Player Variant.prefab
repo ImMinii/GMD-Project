@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2563313336069555342}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4005245276896610771}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,9 +110,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6695934608664965224, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8896104525716621867, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
       propertyPath: m_Name
       value: Player Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8896104525716621867, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -273,14 +281,6 @@ MonoBehaviour:
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 44807ed3-b6db-4d75-bb97-b003983a9b6c
-    m_ActionName: 'Player/Look[/Mouse/delta]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 31b79e73-7254-4ca1-99e3-014cc27dec21
-    m_ActionName: 'Player/Fire[/Mouse/leftButton]'
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: fe9023f2-d104-49a8-a113-a54edee8decc
     m_ActionName: 'UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
@@ -351,6 +351,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ed79727e-e501-4572-8aea-703a801b53a0
     m_ActionName: 'Player1/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e6043974-962c-4d94-abfe-c5ef7cb7981a
+    m_ActionName: 'Player/UsePowerup[/Keyboard/q]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 11913752-17b9-4a69-8436-458e0f7c61e1
+    m_ActionName: 'Player/Inventory[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2bcdd8a3-215f-4924-9985-842021ff552d
+    m_ActionName: Player/KinematicHold
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c8c33e09-8ce0-462b-bc56-b36ac4d0e7dc
+    m_ActionName: 'Player1/UsePowerup[/Keyboard/l]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Joystick
   m_DefaultActionMap: Player
@@ -383,7 +399,7 @@ MonoBehaviour:
   groundCheck: {fileID: 4005245276896610771}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   groundCheckSize: {x: 0.99, y: 0.05}
 --- !u!114 &4381789249147995664
 MonoBehaviour:
@@ -413,7 +429,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 1926142998551312529}
-  speed: 10
   acceleration: 70
   maxSpeed: 35
   wallJumpLockTime: 0.2
@@ -433,7 +448,7 @@ MonoBehaviour:
   wallCheck: {fileID: 2563313336069555342}
   wallLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   wallCheckSize: {x: 0.05, y: 0.99}
   wallJumpPower: {x: 4, y: 6}
   maxWallJumps: 2

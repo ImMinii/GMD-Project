@@ -12,8 +12,6 @@ public class InventoryToggle : MonoBehaviour
 
         isOpen = !isOpen;
         inventoryUI.SetActive(isOpen);
-
-        // Optional: lock or unlock player movement
-        Time.timeScale = isOpen ? 0 : 1; // pause game while inventory is open
+        
     }
 }
