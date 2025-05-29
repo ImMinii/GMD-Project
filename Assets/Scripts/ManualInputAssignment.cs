@@ -3,25 +3,22 @@ using UnityEngine.InputSystem;
 
 public class ManualInputAssignment : MonoBehaviour
 {
-    public PlayerInput player1;
-    public PlayerInput player2;
+    public PlayerInput player1Input;
+    public PlayerInput player2Input; 
 
     void Start()
     {
-        var devices = InputSystem.devices;
+        var gamepads = Gamepad.all;
 
-        // Find the first gamepad and assign to player1
-        Gamepad gamepad = Gamepad.all.Count > 0 ? Gamepad.all[0] : null;
-        Keyboard keyboard = Keyboard.current;
-
-        if (player1 != null && keyboard != null)
+        // Assign Gamepad 1 to Player 1, Gamepad 2 to Player 2
+        if (gamepads.Count >= 2)
         {
-            player1.SwitchCurrentControlScheme("Keyboard", keyboard);
+            player1Input.SwitchCurrentControlScheme("Gamepad", gamepads[0]);
+            player2Input.SwitchCurrentControlScheme("Gamepad", gamepads[1]);
         }
-
-        if (player2 != null && gamepad != null)
+        else
         {
-            player2.SwitchCurrentControlScheme("Gamepad", gamepad);
+            Debug.LogWarning("Not enough controllers found.");
         }
     }
 }

@@ -11,6 +11,16 @@ public class PushableBox : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
         FreezeXMovement();
     }
+    
+    private void FixedUpdate()
+    {
+        // If the box is moving up (positive Y), clamp the velocity to zero (no upward movement)
+        if (rb.linearVelocity.y > 0f)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+        }
+    }
+
 
     public void FreezeXMovement()
     {
