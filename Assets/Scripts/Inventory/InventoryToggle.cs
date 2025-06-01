@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class InventoryToggle : MonoBehaviour
 {
     public GameObject inventoryUI; // drag the InventoryUI GameObject here
-    private bool isOpen = false;
+    public static bool isOpen = false;
 
     public void OnToggleInventory(InputAction.CallbackContext context)
     {
@@ -12,6 +12,9 @@ public class InventoryToggle : MonoBehaviour
 
         isOpen = !isOpen;
         inventoryUI.SetActive(isOpen);
+<<<<<<< Updated upstream
         
+=======
+>>>>>>> Stashed changes
     }
 }
