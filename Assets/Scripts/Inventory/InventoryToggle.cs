@@ -12,12 +12,5 @@ public class InventoryToggle : MonoBehaviour
 
         isOpen = !isOpen;
         inventoryUI.SetActive(isOpen);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     }
 }
