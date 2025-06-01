@@ -20,4 +20,15 @@ public class InventorySlot : MonoBehaviour
         isPicked = true;
         GetComponent<Button>().interactable = false;
     }
+    
+    // Add this in InventorySlot.cs
+    public void OnSlotClicked()
+    {
+        if (InventoryController.Instance.IsItemCollected(itemId) && !isPicked)
+        {
+            LockSlot();
+            // You can also call back to InventorySelector if needed
+        }
+    }
+
 }

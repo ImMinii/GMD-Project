@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         bool onWall = wallJumping.IsOnWall();
+        
+        if (InventoryToggle.isOpen) return;
 
         if (wallJumpLockCounter > 0)
         {
