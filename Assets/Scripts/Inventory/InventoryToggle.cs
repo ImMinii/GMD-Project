@@ -12,5 +12,13 @@ public class InventoryToggle : MonoBehaviour
 
         isOpen = !isOpen;
         inventoryUI.SetActive(isOpen);
+
+        if (isOpen)
+        {
+            var selector = GameObject.FindObjectOfType<PlayerInventorySelector>();
+            if (selector != null)
+                selector.RefreshAllSlots();
+        }
     }
+
 }

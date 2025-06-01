@@ -40,7 +40,8 @@ public class PlayerPowerupHandler : MonoBehaviour
 
 
     // TESTING POWERUPS //
-    [SerializeField] private PowerupType debugPowerupType;
+    //[SerializeField] private PowerupType debugPowerupType;
+    
 
     private void Awake()
     {
@@ -51,7 +52,8 @@ public class PlayerPowerupHandler : MonoBehaviour
     private void Start()
     {
         originalScale = transform.localScale;
-
+        
+/*
         // Assign debug/test powerup
         activePowerup = new Powerup
         {
@@ -60,6 +62,8 @@ public class PlayerPowerupHandler : MonoBehaviour
 
         Debug.Log("DEBUG: Assigned test powerup: " + debugPowerupType);
         ApplyPassivePowerupEffects();  //Debug
+        */
+        
     }
     
     private void FixedUpdate()
@@ -191,14 +195,27 @@ public class PlayerPowerupHandler : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         PowerupPickup pickup = other.GetComponent<PowerupPickup>();
-        if (pickup != null)
+        if (pickup != null && pickup.powerup != null)
         {
-            activePowerup = pickup.powerup;
+            activePowerup = pickup.powerup; // <-- REMOVE THIS LINE
             Debug.Log("Picked up powerup: " + activePowerup.displayName);
-            ApplyPassivePowerupEffects();
+
+            int powerupId = (int)pickup.powerup.type; // use pickup.powerup
+            if (!InventoryController.Instance.collectedItemIds.Contains(powerupId))
+                InventoryController.Instance.collectedItemIds.Add(powerupId);
+
+            var selector = FindObjectOfType<PlayerInventorySelector>();
+            if (selector != null && InventoryToggle.isOpen)
+            {
+                selector.RefreshAllSlots();
+            }
+
+            // REMOVE: ApplyPassivePowerupEffects();
             Destroy(other.gameObject);
         }
     }
+
+
 
     private void ApplyPassivePowerupEffects()
     {
@@ -257,6 +274,16 @@ public class PlayerPowerupHandler : MonoBehaviour
     }
     Debug.Log("Time Control " + (isTimeStopped ? "activated (platforms stopped)" : "deactivated (platforms resumed)"));
 }
+    
+    public void SetActivePowerup(int itemId)
+    {
+        // Find the corresponding Powerup in your game's Powerup definitions (e.g. a list or database)
+        // For demo, you can reconstruct Powerup from type:
+        PowerupType type = (PowerupType)itemId;
+        activePowerup = new Powerup { type = type, displayName = type.ToString() };
+        Debug.Log("Active powerup set: " + type);
+    }
+
 
 
 

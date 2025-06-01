@@ -17,7 +17,15 @@ public class PlayerInventorySelector : MonoBehaviour
     public int columns = 3;
     public int rows = 2;
 
-    private int currentIndex = 1;
+    [Header("Player Input")]
+    public int playerIndex = 0;
+
+    private int currentIndex = 0;
+    private float inputCooldown = 0.2f; // prevent fast skipping
+    private float inputTimer = 0f;
+    
+    private bool isActive = false;
+
 
     void Start()
     {
@@ -26,38 +34,61 @@ public class PlayerInventorySelector : MonoBehaviour
 
         MoveTo(currentIndex);
     }
-
-    // This method should be bound to the UI/Navigate input action
-    public void OnNavigate(InputAction.CallbackContext context)
+    
+    void Update()
     {
-        Debug.Log("OnNavigate called with: " + context.ReadValue<Vector2>());
-
         if (!InventoryToggle.isOpen) return;
-        if (!context.performed) return;
+        if (Gamepad.all.Count <= playerIndex) return;
 
-        Vector2 move = context.ReadValue<Vector2>();
+        inputTimer -= Time.unscaledDeltaTime;
+        var gamepad = Gamepad.all[playerIndex];
+
+        // Only allow navigation if not "locked in" to a slot
+        if (!isActive)
+        {
+            Vector2 nav = gamepad.leftStick.ReadValue();
+            bool navPressed = nav.magnitude > 0.5f;
+
+            if (navPressed && inputTimer <= 0)
+            {
+                OnNavigate(nav);
+                inputTimer = inputCooldown;
+            }
+        }
+
+        // Submit or unsubmit regardless
+        if (gamepad.buttonSouth.wasPressedThisFrame)
+        {
+            if (!isActive)
+                OnSubmit();
+            else
+                OnUnsubmit(); // We'll add this next
+        }
+    }
+
+
+    public void OnNavigate(Vector2 move)
+    {
         if (move == Vector2.zero) return;
-
         int newIndex = currentIndex;
 
-        // Handle left/right movement (columns)
-        if (move.x != 0)
+        if (Mathf.Abs(move.x) > Mathf.Abs(move.y))
         {
+            // Horizontal
             int col = currentIndex % columns;
             int row = currentIndex / columns;
             int newCol = Mathf.Clamp(col + (move.x > 0 ? 1 : -1), 0, columns - 1);
             newIndex = row * columns + newCol;
         }
-        // Handle up/down movement (rows)
-        else if (move.y != 0)
+        else
         {
+            // Vertical
             int col = currentIndex % columns;
             int row = currentIndex / columns;
-            int newRow = Mathf.Clamp(row + (move.y < 0 ? 1 : -1), 0, rows - 1); // Up = -1, Down = +1
+            int newRow = Mathf.Clamp(row + (move.y < 0 ? 1 : -1), 0, rows - 1);
             newIndex = newRow * columns + col;
         }
 
-        // Only move if new index is different and the slot is selectable
         if (newIndex != currentIndex && IsSelectable(slots[newIndex]))
         {
             currentIndex = newIndex;
@@ -71,31 +102,41 @@ public class PlayerInventorySelector : MonoBehaviour
     }
 
     // This method should be bound to the UI/Submit input action
-    public void OnSubmit(InputAction.CallbackContext context)
+// When submitting, lock to the slot and block further movement
+    public void OnSubmit()
     {
-        if (!InventoryToggle.isOpen) return;
-        if (!context.performed) return;
-
         var slot = slots[currentIndex];
         if (IsSelectable(slot))
         {
             slot.LockSlot();
-            // Optionally: Add logic here to track who picked what, or trigger events
+            isActive = true;
+            slot.ActivatePowerupForPlayer(playerObject);
         }
     }
 
+
+// When "unsubmitting" (e.g., pressing A/B again), unlock and allow movement
+    public void OnUnsubmit()
+    {
+        var slot = slots[currentIndex];
+        slot.UnlockSlot(); // Optional: if you want toggle
+        isActive = false;
+    }
+
+
     private void MoveTo(int index)
     {
-        Debug.Log($"Moving selector to slot {index}");
         if (selectorVisual != null && slots[index] != null)
         {
             selectorVisual.anchoredPosition = ((RectTransform)slots[index].transform).anchoredPosition;
-            Debug.Log("New anchoredPosition: " + selectorVisual.anchoredPosition);
-        }
-        else
-        {
-            Debug.LogWarning("Selector or slot missing!");
         }
     }
+    
+    public void RefreshAllSlots()
+    {
+        foreach (var slot in slots)
+            slot.Refresh();
+    }
+
 
 }

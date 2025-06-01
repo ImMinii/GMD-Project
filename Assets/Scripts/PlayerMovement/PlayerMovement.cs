@@ -23,11 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontal = value;
     }
-
-    public void SetPlatformVelocity(Vector2 velocity)
-    {
-        currentPlatformVelocity = velocity;
-    }
+    
 
     private void FixedUpdate()
     {

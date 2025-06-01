@@ -21,6 +21,13 @@ public class InventorySlot : MonoBehaviour
         GetComponent<Button>().interactable = false;
     }
     
+    public void UnlockSlot()
+    {
+        isPicked = false;
+        GetComponent<Button>().interactable = true;
+    }
+
+    
     // Add this in InventorySlot.cs
     public void OnSlotClicked()
     {
@@ -30,5 +37,15 @@ public class InventorySlot : MonoBehaviour
             // You can also call back to InventorySelector if needed
         }
     }
+    
+    public void ActivatePowerupForPlayer(GameObject playerObject)
+    {
+        var handler = playerObject.GetComponent<PlayerPowerupHandler>();
+        if (handler != null)
+        {
+            handler.SetActivePowerup(itemId);
+        }
+    }
+
 
 }
