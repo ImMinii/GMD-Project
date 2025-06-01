@@ -10,6 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
     private float previousVerticalInput;
     private PlayerPowerupHandler powerHandler;
     private InventoryToggle inventory;
+    private TogglePause pause;
 
     
     private void Awake()
@@ -19,7 +20,7 @@ public class PlayerInputHandler : MonoBehaviour
         wallJump = GetComponent<WallJumping>();
         powerHandler = GetComponent<PlayerPowerupHandler>();
         inventory = FindFirstObjectByType<InventoryToggle>();
-
+        pause = FindFirstObjectByType<TogglePause>();
     }
     
 
@@ -54,6 +55,12 @@ public class PlayerInputHandler : MonoBehaviour
         {
             powerHandler.UsePowerup();
         }
+    }
+    
+    public void Pause(InputAction.CallbackContext context)
+    {
+        Debug.Log("trigger pause");
+        pause.OnTogglePaused(context);
     }
     
 }
