@@ -7,6 +7,7 @@ public class InventorySlot : MonoBehaviour
     public Image icon;
     public GameObject lockedOverlay;
     public bool isPicked = false;
+    
 
     public void Refresh()
     {

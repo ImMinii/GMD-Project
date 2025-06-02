@@ -89,11 +89,12 @@ public class PlayerInventorySelector : MonoBehaviour
             newIndex = newRow * columns + col;
         }
 
-        if (newIndex != currentIndex && IsSelectable(slots[newIndex]))
+        if (newIndex != currentIndex)
         {
             currentIndex = newIndex;
             MoveTo(currentIndex);
         }
+
     }
 
     private bool IsSelectable(InventorySlot slot)
@@ -119,24 +120,53 @@ public class PlayerInventorySelector : MonoBehaviour
     public void OnUnsubmit()
     {
         var slot = slots[currentIndex];
-        slot.UnlockSlot(); // Optional: if you want toggle
+        slot.UnlockSlot(); // Unlock the slot visually/UI
         isActive = false;
+
+        // Deactivate powerup for player
+        if (playerObject != null)
+        {
+            var handler = playerObject.GetComponent<PlayerPowerupHandler>();
+            if (handler != null)
+                handler.ClearActivePowerup();
+        }
     }
+
 
 
     private void MoveTo(int index)
     {
-        if (selectorVisual != null && slots[index] != null)
+        // Only show the selector if there is at least one collected powerup
+        if (selectorVisual != null && slots[index] != null && HasAnyCollectedPowerup())
         {
+            selectorVisual.gameObject.SetActive(true);
             selectorVisual.anchoredPosition = ((RectTransform)slots[index].transform).anchoredPosition;
         }
+        else if (selectorVisual != null)
+        {
+            selectorVisual.gameObject.SetActive(false);
+        }
     }
+
     
     public void RefreshAllSlots()
     {
         foreach (var slot in slots)
             slot.Refresh();
+        MoveTo(currentIndex); // Will hide selector if nothing collected
     }
+
+    
+    private bool HasAnyCollectedPowerup()
+    {
+        foreach (var slot in slots)
+        {
+            if (InventoryController.Instance.IsItemCollected(slot.itemId))
+                return true;
+        }
+        return false;
+    }
+
 
 
 }

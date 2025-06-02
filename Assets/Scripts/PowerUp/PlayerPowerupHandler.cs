@@ -197,9 +197,6 @@ public class PlayerPowerupHandler : MonoBehaviour
         PowerupPickup pickup = other.GetComponent<PowerupPickup>();
         if (pickup != null && pickup.powerup != null)
         {
-            activePowerup = pickup.powerup; // <-- REMOVE THIS LINE
-            Debug.Log("Picked up powerup: " + activePowerup.displayName);
-
             int powerupId = (int)pickup.powerup.type; // use pickup.powerup
             if (!InventoryController.Instance.collectedItemIds.Contains(powerupId))
                 InventoryController.Instance.collectedItemIds.Add(powerupId);
@@ -209,8 +206,7 @@ public class PlayerPowerupHandler : MonoBehaviour
             {
                 selector.RefreshAllSlots();
             }
-
-            // REMOVE: ApplyPassivePowerupEffects();
+            
             Destroy(other.gameObject);
         }
     }
@@ -277,11 +273,10 @@ public class PlayerPowerupHandler : MonoBehaviour
     
     public void SetActivePowerup(int itemId)
     {
-        // Find the corresponding Powerup in your game's Powerup definitions (e.g. a list or database)
-        // For demo, you can reconstruct Powerup from type:
         PowerupType type = (PowerupType)itemId;
         activePowerup = new Powerup { type = type, displayName = type.ToString() };
         Debug.Log("Active powerup set: " + type);
+        ApplyPassivePowerupEffects();
     }
 
 
@@ -289,4 +284,12 @@ public class PlayerPowerupHandler : MonoBehaviour
 
     public bool CanDoubleJump() => canDoubleJump;
     public bool IsPhasing() => isPhasing;
+    
+    public void ClearActivePowerup()
+    {
+        // Set activePowerup to null and reset all effects
+        activePowerup = null;
+        ResetPowerupStates();
+        Debug.Log("Powerup deactivated.");
+    }
 }
