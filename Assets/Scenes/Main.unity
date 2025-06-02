@@ -1747,11 +1747,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6830486132827474964, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.05
+      value: -3.19
       objectReference: {fileID: 0}
     - target: {fileID: 6830486132827474964, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.82
+      value: 3.27
       objectReference: {fileID: 0}
     - target: {fileID: 6830486132827474964, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5494,11 +5494,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6830486132827474964, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.97
+      value: -1.95
       objectReference: {fileID: 0}
     - target: {fileID: 6830486132827474964, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.52
+      value: 5.25
       objectReference: {fileID: 0}
     - target: {fileID: 6830486132827474964, guid: 5fb571f8d4359ca41a598dfbff3a4f76, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6992,7 +6992,7 @@ MonoBehaviour:
   - {fileID: 500657126}
   columns: 3
   rows: 2
-  playerIndex: 0
+  playerIndex: 1
 --- !u!1 &1463718981
 GameObject:
   m_ObjectHideFlags: 0
@@ -7329,7 +7329,7 @@ MonoBehaviour:
   - {fileID: 500657126}
   columns: 3
   rows: 2
-  playerIndex: 1
+  playerIndex: 0
 --- !u!114 &1564513489
 MonoBehaviour:
   m_ObjectHideFlags: 0
