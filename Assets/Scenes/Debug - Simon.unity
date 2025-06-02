@@ -898,7 +898,7 @@ MonoBehaviour:
   - {fileID: 952270931}
   columns: 3
   rows: 2
-  playerIndex: 0
+  playerIndex: 1
 --- !u!114 &536918931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1314,7 +1314,7 @@ MonoBehaviour:
   - {fileID: 952270931}
   columns: 3
   rows: 2
-  playerIndex: 1
+  playerIndex: 0
 --- !u!114 &604631504
 MonoBehaviour:
   m_ObjectHideFlags: 0
