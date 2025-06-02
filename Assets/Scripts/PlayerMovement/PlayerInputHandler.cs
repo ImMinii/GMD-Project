@@ -23,20 +23,27 @@ public class PlayerInputHandler : MonoBehaviour
         pause = FindFirstObjectByType<TogglePause>();
     }
     
+    private bool IsInputBlocked()
+    {
+        // Use static bool from InventoryToggle and static Time.timeScale check for pause
+        return InventoryToggle.isOpen || Time.timeScale == 0;
+    }
 
+    
     public void Move(InputAction.CallbackContext context)
     {
+        if (IsInputBlocked()) return;
         Vector2 input = context.ReadValue<Vector2>();
         playerMovement.SetHorizontal(input.x);
-        
     }
-    
+
     public void Jump(InputAction.CallbackContext context)
     {
+        if (IsInputBlocked()) return;
         if (context.started)
         {
-            jump.TryJump(true); 
-            wallJump.TryWallJump(true); 
+            jump.TryJump(true);
+            wallJump.TryWallJump(true);
         }
         else
         {
@@ -44,18 +51,21 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    public void Inventory(InputAction.CallbackContext context)
-    {
-        inventory.OnToggleInventory(context);
-    }
-    
     public void UsePowerup(InputAction.CallbackContext context)
     {
+        if (IsInputBlocked()) return;
         if (context.started)
         {
             powerHandler.UsePowerup();
         }
     }
+
+
+    public void Inventory(InputAction.CallbackContext context)
+    {
+        inventory.OnToggleInventory(context);
+    }
+    
     
     public void Pause(InputAction.CallbackContext context)
     {

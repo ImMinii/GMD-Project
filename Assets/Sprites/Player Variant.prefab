@@ -156,9 +156,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8896104525716621867, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 602006038745824641}
-    - targetCorrespondingSourceObject: {fileID: 8896104525716621867, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -9178726115896476102}
   m_SourcePrefab: {fileID: 100100000, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
 --- !u!1 &1420575300035268420 stripped
 GameObject:
@@ -452,32 +449,6 @@ MonoBehaviour:
   wallCheckSize: {x: 0.05, y: 0.99}
   wallJumpPower: {x: 4, y: 6}
   maxWallJumps: 2
---- !u!233 &-9178726115896476102
-HingeJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420575300035268420}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_UseConnectedAnchor: 1
-  m_UseMotor: 0
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
 --- !u!4 &6830486132827474964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3893758428119009659, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
