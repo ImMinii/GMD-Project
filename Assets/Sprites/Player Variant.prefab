@@ -156,6 +156,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8896104525716621867, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 602006038745824641}
+    - targetCorrespondingSourceObject: {fileID: 8896104525716621867, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2326727185898753813}
   m_SourcePrefab: {fileID: 100100000, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
 --- !u!1 &1420575300035268420 stripped
 GameObject:
@@ -177,7 +180,7 @@ Rigidbody2D:
   m_Mass: 2
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 10
+  m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: 2791712147693ea448aab394b5304ece, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -358,12 +361,12 @@ MonoBehaviour:
     m_ActionName: 'Player/Inventory[/Keyboard/e]'
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 2bcdd8a3-215f-4924-9985-842021ff552d
-    m_ActionName: Player/KinematicHold
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: c8c33e09-8ce0-462b-bc56-b36ac4d0e7dc
     m_ActionName: 'Player1/UsePowerup[/Keyboard/l]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 65862a3f-100f-470b-a0eb-5e438ca365d9
+    m_ActionName: 'Player/Paused[/Keyboard/r,/DualShock4GamepadHID/leftTrigger,/DualShock4GamepadHID1/leftTrigger]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Joystick
   m_DefaultActionMap: Player
@@ -411,7 +414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 1926142998551312529}
-  jumpForce: 50
+  jumpForce: 42
   groundCheck: {fileID: 5716946070994909066}
 --- !u!114 &247657882430312363
 MonoBehaviour:
@@ -426,8 +429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 1926142998551312529}
-  acceleration: 70
-  maxSpeed: 35
+  acceleration: 50
+  maxSpeed: 80
   wallJumpLockTime: 0.2
 --- !u!114 &602006038745824641
 MonoBehaviour:
@@ -449,6 +452,29 @@ MonoBehaviour:
   wallCheckSize: {x: 0.05, y: 0.99}
   wallJumpPower: {x: 4, y: 6}
   maxWallJumps: 2
+--- !u!114 &2326727185898753813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420575300035268420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 381714e876773a3438c4c7c301210d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sizePowerupScale: {x: 0.7, y: 0.7, z: 1}
+  dashForce: 10
+  dashCooldown: 1
+  phaseableLayers:
+    serializedVersion: 2
+    m_Bits: 1048576
+  wallCheck: {fileID: 2563313336069555342}
+  wallCheckSize: {x: 0.5, y: 0.05}
+  pushableLayer:
+    serializedVersion: 2
+    m_Bits: 524288
 --- !u!4 &6830486132827474964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3893758428119009659, guid: 2347c532c1e2f6c43a95cd4f0a39892f, type: 3}
