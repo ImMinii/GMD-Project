@@ -5,11 +5,11 @@ public class Collectibles : MonoBehaviour
 {
     private int score;
 
-    private AudioManager _audioManager;
+    private AudioManager audioManager;
 
     private void Awake()
     {
-        _audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void Start()
@@ -23,7 +23,7 @@ public class Collectibles : MonoBehaviour
         {
             ScoreManager.Instance.AddScore(score);
             gameObject.SetActive(false);
-            _audioManager.PlayCollecion();
+            audioManager.PlayCollecion();
         }
     }
 

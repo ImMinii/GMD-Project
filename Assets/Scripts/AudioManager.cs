@@ -14,9 +14,9 @@ public class AudioManager : MonoBehaviour
         SFXSound.PlayOneShot(collection);
     }
 
-    public void PlayPowerUpCollect()
+    public void PlayPowerUpCollect(AudioClip clip)
     {
-        SFXSound.PlayOneShot(powerUp);
+        SFXSound.PlayOneShot(clip);
     }
     
 }

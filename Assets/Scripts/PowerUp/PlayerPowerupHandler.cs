@@ -38,7 +38,7 @@ public class PlayerPowerupHandler : MonoBehaviour
     private bool isTimeStopped = false;
 
 
-
+    private AudioManager audioManager;
     // TESTING POWERUPS //
     //[SerializeField] private PowerupType debugPowerupType;
     
@@ -47,6 +47,7 @@ public class PlayerPowerupHandler : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerColliders = GetComponentsInChildren<Collider2D>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void Start()
@@ -208,7 +209,9 @@ public class PlayerPowerupHandler : MonoBehaviour
             }
             
             Destroy(other.gameObject);
+            audioManager.PlayPowerUpCollect(audioManager.powerUp);
         }
+        
     }
 
 
