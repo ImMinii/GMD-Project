@@ -104,8 +104,6 @@ public class PlayerPowerupHandler : MonoBehaviour
 
     private void ApplyPowerup(Powerup powerup)
     {
-        ResetPowerupStates();
-
         switch (powerup.type)
         {
             case PowerupType.DoubleJump:
@@ -152,6 +150,18 @@ public class PlayerPowerupHandler : MonoBehaviour
     {
         canDoubleJump = false;
         canPush = false;
+        
+        isSizeActive = false;
+        transform.localScale = originalScale;
+        
+        if (isTimeStopped)
+        {
+            isTimeStopped = false;
+            foreach (var platform in FindObjectsOfType<MovingPlatform>())
+            {
+                platform.isStopped = false;
+            }
+        }
 
         if (isPhasing)
         {

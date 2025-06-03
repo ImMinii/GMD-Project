@@ -9,10 +9,11 @@ public class InventoryToggle : MonoBehaviour
     public void OnToggleInventory(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-
+        if (Time.timeScale == 0) return;
+    
         isOpen = !isOpen;
         inventoryUI.SetActive(isOpen);
-
+    
         if (isOpen)
         {
             var selector = GameObject.FindObjectOfType<PlayerInventorySelector>();
@@ -20,5 +21,6 @@ public class InventoryToggle : MonoBehaviour
                 selector.RefreshAllSlots();
         }
     }
+
 
 }

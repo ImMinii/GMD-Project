@@ -3,11 +3,13 @@ using UnityEngine;
 public class SnappingCameraController : MonoBehaviour
 {
     [SerializeField]
-    public Transform player1;
+    private Transform player1;
     [SerializeField]
-    public Transform player2;
-    public Vector2 minBounds;
-    public Vector2 maxBounds;
+    private Transform player2;
+    [SerializeField]
+    private Vector2 minBounds;
+    [SerializeField]
+    private Vector2 maxBounds;
 
     private float camWidth;
     private float camHeight;
