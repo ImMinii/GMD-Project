@@ -42,15 +42,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "KinematicHold",
-                    "type": "Button",
-                    "id": "2bcdd8a3-215f-4924-9985-842021ff552d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Paused",
                     "type": "Button",
                     "id": "65862a3f-100f-470b-a0eb-5e438ca365d9",
@@ -151,6 +142,17 @@
                 },
                 {
                     "name": "",
+                    "id": "cfbad50e-3910-4d42-851c-75d76cf7d841",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "bdec149f-8258-4a54-9e2c-8ff6b1777e5a",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -164,6 +166,17 @@
                     "name": "",
                     "id": "a7690064-eec5-4e12-be83-2cd9bf739680",
                     "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UsePowerup",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3313a8a0-750f-427f-9be9-bae79432e7ae",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -190,17 +203,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a4c6e233-8dbc-4d8e-9115-99af9ca15c0e",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "KinematicHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
