@@ -8,7 +8,7 @@ The collectables are very simple as they can only be collected. The number of co
 
 The power-ups also have the same type of animation as the gems with the spotlight but made slightly different. There is a difference in the speed for the animation on some of the power-ups to make it more intriguing and not as uniformed.
 
-![animation](/pictures/blog5.png)
+![animation](pictures/blog5.png)
 The dash powerup is the one where it is the clearest to see that the animation is not at a constant speed. Each power-up has a similar set up also with the light that lumineate like the gems. The power-ups also have a sound when picked-up that is different from the gems to make the difference more obvious. All the power-ups have the same sound when they are collected.
 
 ### World building
