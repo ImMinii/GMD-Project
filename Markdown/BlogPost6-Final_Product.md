@@ -1,0 +1,11 @@
+﻿# BlogPost 6 - Final Product
+
+The game is functional having all the planned features of the milestones and having implemented aspects of the GMD course, with only not having implemented game AI, as there was not an use case for it.
+
+The first milestone having the foundational parts of the game. The players are linked together with LineRenderer and have corresponding physics that can simulate momentum when swinging. The players use the new input system for reading gamepad inputs making them able to play on VIA’s arcade machine. And the camera follows the player when they leave the screen and goes to the next screen.
+
+The second milestone has the features of the player being able to use power ups and can interact with an inventory, including other UI such as menu and pause. Through the menu and pause you are able to quit the game. The players are able to open a shared inventory and choose their own power to use exclusively for them and unequip the chosen power up. Almost every power can be used consistently, except for the push power up that works occasionally.
+
+The last milestone had a focus on the world itself. The players are able to play the game and explore the world with platforming and puzzles. In this milestone the focus has also been in the aesthetic, both in the world but also in the collectables. The different collectables have animation and a pick up sound and the overall game has some background music. This milestone also defines the scale of the game as the exploring part of the game can be a benefit of the enjoyment. By the end of this game, approximately 15 screens exist but it is possible to design more and make the world bigger.
+
+This game ended up fulfilling our goal for the game to be a metrovania, puzzle, platformer game with features that defines these genres. Mostly focus on platforminging than puzzles, though this might be a bigger factor if the game is scaled for a larger world, so the players have to think about the different combinations and maybe also other power ups and objects in the world.

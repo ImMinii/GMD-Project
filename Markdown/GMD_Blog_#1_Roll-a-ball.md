@@ -1,0 +1,9 @@
+First game
+
+The first game is based on the online tutorial Roll a Ball, with extra implementation. The only feature from the tutorial that is not used in the current game is the dynamic obstacles. I didn’t find it interesting, so I skipped that feature to start expanding past the tutorial.
+
+I have created 3 prefabs in this game, besides the PickUp from the Tutorial. Arch, Bridge and Tower. The Bridge and Tower prefab might be a bit unnecessary because they only have one instance in the scene. The Arch is used in different places and different variations to it. The ghost in the game is taken from the asset store
+
+The NevMeshSurface component is placed in a parent object. When the surface is baked it is set to take account of all the child object, so the ghost doesn’t go through all the walls. It could also be done by setting objects into different layers and only bake in one layer. The advantage may be that the hierarchy might be better sorted because it is currently a mess.
+
+I’ve created some of my own materials for it to be more fitting. The most notable are the transparent ones. There is one fully transparent material that is set. The ball has rigid body component so it interacts with all the mesh objects. The ghost has no collision, so it interacts with nothing. It can only walk on the baked surface in NavMeshSurface and has an offset, so it is always above it. There is a pink transparent material which is “used” for the ghost. It’s a way only for the ghost, so it has a shortcut and makes the game more challenging and balanced. There is also a big ground object that has a fully transparent object because some of those connections in the maps make the ball bounce
