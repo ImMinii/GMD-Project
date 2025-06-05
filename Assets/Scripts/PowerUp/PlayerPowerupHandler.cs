@@ -67,7 +67,7 @@ public class PlayerPowerupHandler : MonoBehaviour
         
     }
     
-    private void FixedUpdate()
+    private void Update()
     {
         if (canPush)
         {
