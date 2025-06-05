@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TileSpikes 2
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 7482667652216324306, guid: 28a6886be20effa4e805bac010f12727, type: 3}
-  m_Color: {r: 0.78431374, g: 0.070588216, b: 0.31484708, a: 0.64705884}
+  m_Color: {r: 0.13725491, g: 0.19215688, b: 0.19607845, a: 0.77254903}
   m_Transform:
     e00: 1
     e01: 0
