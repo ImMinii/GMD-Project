@@ -6,11 +6,11 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
 
-    private int score;
+    private int score = 0;
     public TextMeshProUGUI scoreText;
-    public GameObject scoreUI; 
-    private bool hasShownUI = false;
 
+    [SerializeField]
+    private int NumberofGems = 20;
     private void Awake()
     {
         // Singleton pattern
@@ -22,25 +22,13 @@ public class ScoreManager : MonoBehaviour
             return;
         }
         
-        if (scoreText != null)
-        {
-            scoreText.gameObject.SetActive(false);
-        }
-    
-        if (scoreUI != null)
-        {
-            scoreUI.SetActive(false);
-        } 
     }
     
     public void AddScore(int amount)
     {
-        if (!hasShownUI && scoreUI != null)
-        {
-            scoreUI.SetActive(true);
-            scoreText.gameObject.SetActive(true);
-            hasShownUI = true;
-        }
+        
+        scoreText.gameObject.SetActive(true);
+        
         score += amount;
         UpdateScoreUI();
     }
@@ -49,7 +37,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = score.ToString();
+            scoreText.text = score + "/" + NumberofGems;
         }
     }
 }
